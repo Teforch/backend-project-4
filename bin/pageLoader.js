@@ -1,8 +1,8 @@
 #!/usr/bin/env node
-import { Command } from 'commander';
-import PageLoader from '../index.js';
+import { Command } from 'commander'
+import pageLoader from '../index.js'
 
-const program = new Command();
+const program = new Command()
 
 program
   .name('page-loader')
@@ -11,8 +11,7 @@ program
   .arguments('<url>')
   .option('-o, --output [dir]', 'output dir', process.cwd())
   .action((url, options) => {
-    const pageLoader = new PageLoader(url, options.output);
-    pageLoader.load();
-  });
+    pageLoader(url, options.output)
+  })
 
-program.parse(process.argv);
+program.parse(process.argv)
