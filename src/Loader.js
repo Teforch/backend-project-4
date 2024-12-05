@@ -195,7 +195,6 @@ export default class Loader {
         new URL(script, this.url.href).href,
         true
       )
-      log($(script).attr('src'))
       $(script).attr('src', `${this.creator.fileName}_files/${formattedPath}`)
     })
 
