@@ -1,6 +1,4 @@
-import debug from 'debug';
 import path from 'path';
-const log = debug('page-loader');
 
 export default (url, changeOnDotLastSymbol = false) => {
   const parsedUrl = new URL(url);
