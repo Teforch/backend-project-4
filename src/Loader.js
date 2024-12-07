@@ -1,5 +1,4 @@
 import axios from 'axios';
-import path from 'path';
 import debug from 'debug';
 import Listr from 'listr';
 import * as cheerio from 'cheerio';
@@ -17,6 +16,7 @@ export default class Loader {
   }
 
   async downloadHTML() {
+    log(this.outputDir);
     const { data } = await axios.get(this.url.href);
     await this.creator.createHTMLFile(data);
     this.htmlFile = data;
