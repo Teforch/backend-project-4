@@ -10,9 +10,7 @@ export default (url, changeOnDotLastSymbol = false) => {
         .replace(/[^a-z0-9]/gi, '-');
       const afterLastDot = urlWithoutProtocol.slice(lastDotIndex);
       const fileName = `${beforeLastDot}${afterLastDot}`;
-      if (fileName.endsWith('/')) {
-        return fileName.slice(0, -1);
-      }
+
       return fileName;
     }
   }
