@@ -1,6 +1,10 @@
 export default (url, changeOnDotLastSymbol = false) => {
   const parsedUrl = new URL(url);
-  const urlWithoutProtocol = url.replace(`${parsedUrl.protocol}//`, '');
+  let urlWithoutProtocol = url.replace(`${parsedUrl.protocol}//`, '');
+
+  if (urlWithoutProtocol.endsWith('/')) {
+    urlWithoutProtocol = urlWithoutProtocol.slice(0, -1) + '.html';
+  }
 
   if (changeOnDotLastSymbol) {
     const lastDotIndex = urlWithoutProtocol.lastIndexOf('.');
@@ -10,7 +14,6 @@ export default (url, changeOnDotLastSymbol = false) => {
         .replace(/[^a-z0-9]/gi, '-');
       const afterLastDot = urlWithoutProtocol.slice(lastDotIndex);
       const fileName = `${beforeLastDot}${afterLastDot}`;
-
       return fileName;
     }
   }
