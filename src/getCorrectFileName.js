@@ -1,4 +1,4 @@
-export default (url, changeOnDotLastSymbol) => {
+export default (url, changeOnDotLastSymbol = false) => {
   const parsedUrl = new URL(url);
   const urlWithoutProtocol = url.replace(`${parsedUrl.protocol}//`, '');
 
@@ -9,7 +9,11 @@ export default (url, changeOnDotLastSymbol) => {
         .slice(0, lastDotIndex)
         .replace(/[^a-z0-9]/gi, '-');
       const afterLastDot = urlWithoutProtocol.slice(lastDotIndex);
-      return beforeLastDot + afterLastDot;
+      const fileName = `${beforeLastDot}${afterLastDot}`;
+      if (fileName.endsWith('/')) {
+        return fileName.slice(0, -1);
+      }
+      return fileName;
     }
   }
   const fileName = urlWithoutProtocol.replace(/[^a-z0-9]/gi, '-');

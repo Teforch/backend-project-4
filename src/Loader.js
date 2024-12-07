@@ -1,4 +1,5 @@
 import axios from 'axios';
+import path from 'path';
 import debug from 'debug';
 import Listr from 'listr';
 import * as cheerio from 'cheerio';
@@ -56,7 +57,7 @@ export default class Loader {
             },
           },
         ],
-        { concurrent: true },
+        { concurrent: true }
       );
 
       await tasks.run();
@@ -73,7 +74,7 @@ export default class Loader {
       }
       const formattedPath = getCorrectFileName(
         new URL(srcPath, this.url.href).href,
-        true,
+        true
       );
       $(img).attr('src', `${this.creator.fileName}_files/${formattedPath}`);
     });
@@ -101,21 +102,26 @@ export default class Loader {
       } else if (new URL(link).hostname !== this.url.hostname) {
         return;
       }
-      const name = getCorrectFileName(url, true);
+
+      log(url);
+      let name = getCorrectFileName(url, true);
+      if (path.extname(url) === '') {
+        name = `${name}.html`;
+      }
+
+      log(name);
 
       const tasks = new Listr(
         [
           {
             title: url,
             task: async () => {
-              const { data } = await axios.get(url, {
-                responseType: 'arraybuffer',
-              });
+              const { data } = await axios.get(url);
               await this.creator.createAssets(data, name);
             },
           },
         ],
-        { concurrent: true },
+        { concurrent: true }
       );
 
       await tasks.run();
@@ -131,10 +137,12 @@ export default class Loader {
         }
       }
 
-      const newHrefPath = hrefPath.includes('.') ? hrefPath : `${hrefPath}.html`;
+      const newHrefPath = hrefPath.includes('.')
+        ? hrefPath
+        : `${hrefPath}.html`;
       const formattedPath = getCorrectFileName(
         new URL(newHrefPath, this.url.href).href,
-        true,
+        true
       );
       $(link).attr('href', `${this.creator.fileName}_files/${formattedPath}`);
     });
@@ -158,6 +166,8 @@ export default class Loader {
     log(scriptsArrayWithSrc);
 
     scriptsArrayWithSrc.forEach(async (script) => {
+      if (!script) return;
+
       let url = script;
       if (!url.startsWith('http')) {
         url = new URL(url, this.url.href).href;
@@ -176,7 +186,7 @@ export default class Loader {
             },
           },
         ],
-        { concurrent: true },
+        { concurrent: true }
       );
 
       await tasks.run();
@@ -186,7 +196,7 @@ export default class Loader {
 
     scripts.each((_, script) => {
       const srcPath = $(script).attr('src');
-      log(srcPath);
+      if (!srcPath) return;
 
       if (srcPath?.startsWith('http')) {
         if (new URL(srcPath).hostname !== this.url.hostname) {
@@ -195,7 +205,7 @@ export default class Loader {
       }
       const formattedPath = getCorrectFileName(
         new URL(srcPath, this.url.href).href,
-        true,
+        true
       );
 
       $(script).attr('src', `${this.creator.fileName}_files/${formattedPath}`);

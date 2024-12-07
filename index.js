@@ -11,7 +11,7 @@ class PageLoader {
     await loader.downloadHTML();
     await loader.downloadPictures();
     await loader.downloadLinks();
-    await loader.downloadScripts();
+    //await loader.downloadScripts();
   }
 }
 
