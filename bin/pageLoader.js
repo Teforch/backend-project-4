@@ -2,6 +2,7 @@
 import { Command } from 'commander';
 import pageLoader from '../index.js';
 import debug from 'debug';
+const log = debug('page-loader');
 
 const program = new Command();
 
@@ -12,7 +13,7 @@ program
   .arguments('<url>')
   .option('-o, --output [dir]', 'output dir', process.cwd())
   .action((url, options) => {
-    debug options.output;
+    log(options.output);
     pageLoader(url, options.output);
   });
 
