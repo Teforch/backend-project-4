@@ -9,10 +9,9 @@ program
   .description('Page loader utility')
   .version('1.0.0')
   .arguments('<url>')
-  .option('-o, --output [dir]', 'output dir', process.cwd())
-  .action((url, options) => {
-    console.log(options.output);
-    pageLoader(url, options.output);
+  .option('-o, --output [dir]', 'output directory (default is current)')
+  .action((url) => {
+    pageLoader(url, process.cwd());
   });
 
 program.parse(process.argv);
