@@ -179,10 +179,9 @@ export default class Loader {
           {
             title: url,
             task: async () => {
-              const { data } = await axios.get(url, {
-                responseType: 'arraybuffer',
-              });
+              const { data } = await axios.get(url);
               await this.creator.createAssets(data, name);
+              log('script downloaded');
             },
           },
         ],
