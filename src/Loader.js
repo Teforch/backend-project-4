@@ -54,6 +54,7 @@ export default class Loader {
                 responseType: 'arraybuffer',
               });
               await this.creator.createAssets(data, name);
+              log('image downloaded');
             },
           },
         ],
@@ -116,6 +117,7 @@ export default class Loader {
                 responseType: 'arraybuffer',
               });
               await this.creator.createAssets(data, name);
+              log('link downloaded');
             },
           },
         ],
@@ -181,6 +183,7 @@ export default class Loader {
             task: async () => {
               const { data } = await axios.get(url);
               await this.creator.createAssets(data, name);
+              log('script downloaded');
             },
           },
         ],
