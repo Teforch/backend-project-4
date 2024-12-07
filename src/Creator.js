@@ -1,5 +1,7 @@
 import fs from 'fs/promises';
 import path from 'path';
+import debug from 'console';
+const log = debug('page-loader');
 
 export default class Creator {
   constructor(outputDir, fileName) {
