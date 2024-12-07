@@ -1,3 +1,6 @@
+import debug from 'debug';
+const log = debug('page-loader');
+
 export default (url, changeOnDotLastSymbol = false) => {
   const parsedUrl = new URL(url);
   let urlWithoutProtocol = url.replace(`${parsedUrl.protocol}//`, '');
@@ -5,6 +8,7 @@ export default (url, changeOnDotLastSymbol = false) => {
   if (urlWithoutProtocol.endsWith('/')) {
     urlWithoutProtocol = urlWithoutProtocol.slice(0, -1) + '.html';
   }
+  log(urlWithoutProtocol);
 
   if (changeOnDotLastSymbol) {
     const lastDotIndex = urlWithoutProtocol.lastIndexOf('.');
