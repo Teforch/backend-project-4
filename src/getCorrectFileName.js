@@ -9,7 +9,6 @@ export default (url, changeOnDotLastSymbol = false) => {
   if (path.extname(urlWithoutProtocol) === '') {
     urlWithoutProtocol = urlWithoutProtocol + '.html';
   }
-  log(urlWithoutProtocol);
 
   if (changeOnDotLastSymbol) {
     const lastDotIndex = urlWithoutProtocol.lastIndexOf('.');

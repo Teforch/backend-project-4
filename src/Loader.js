@@ -107,8 +107,6 @@ export default class Loader {
       let name = getCorrectFileName(url, true);
       log(name);
 
-      log(name);
-
       const tasks = new Listr(
         [
           {
