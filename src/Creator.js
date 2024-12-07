@@ -8,6 +8,7 @@ export default class Creator {
   }
 
   async createHTMLFile(data) {
+    log(this.outputDir);
     const filePath = path.join(this.outputDir, `${this.fileName}.html`);
     await fs.writeFile(filePath, data);
   }
