@@ -1,12 +1,13 @@
 import debug from 'debug';
+import path from 'path';
 const log = debug('page-loader');
 
 export default (url, changeOnDotLastSymbol = false) => {
   const parsedUrl = new URL(url);
   let urlWithoutProtocol = url.replace(`${parsedUrl.protocol}//`, '');
 
-  if (urlWithoutProtocol.endsWith('/')) {
-    urlWithoutProtocol = urlWithoutProtocol.slice(0, -1) + '.html';
+  if (path.extname(urlWithoutProtocol) === '') {
+    urlWithoutProtocol = urlWithoutProtocol + '.html';
   }
   log(urlWithoutProtocol);
 
