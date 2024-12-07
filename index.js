@@ -16,4 +16,4 @@ class PageLoader {
 }
 
 export default async (url, outputDir = process.cwd()) =>
-  new PageLoader(url, outputDir).load();
+  await new PageLoader(url, outputDir).load();
