@@ -15,4 +15,5 @@ class PageLoader {
   }
 }
 
-export default (url, outputDir) => new PageLoader(url, outputDir).load();
+export default (url, outputDir = process.cwd()) =>
+  new PageLoader(url, outputDir).load();

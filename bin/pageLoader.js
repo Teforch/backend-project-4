@@ -11,7 +11,7 @@ program
   .arguments('<url>')
   .option('-o, --output [dir]', 'output directory (default is current)')
   .action((url) => {
-    pageLoader(url, process.cwd());
+    pageLoader(url);
   });
 
 program.parse(process.argv);
