@@ -112,7 +112,9 @@ export default class Loader {
           {
             title: url,
             task: async () => {
-              const { data } = await axios.get(url);
+              const { data } = await axios.get(url, {
+                responseType: 'arraybuffer',
+              });
               await this.creator.createAssets(data, name);
             },
           },
@@ -177,7 +179,9 @@ export default class Loader {
           {
             title: url,
             task: async () => {
-              const { data } = await axios.get(url);
+              const { data } = await axios.get(url, {
+                responseType: 'arraybuffer',
+              });
               await this.creator.createAssets(data, name);
             },
           },
