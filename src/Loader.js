@@ -29,7 +29,7 @@ export default class Loader {
     const $ = cheerio.load(this.htmlFile);
     const images = $('img');
     const imagesArrayWithSrc = [];
-    images.each((i, image) => {
+    images.each((_, image) => {
       const src = $(image).attr('src');
       if (src) {
         imagesArrayWithSrc.push(src);
@@ -65,7 +65,7 @@ export default class Loader {
       // await this.creator.createAssets(data, name)
     });
 
-    images.each((i, img) => {
+    images.each((_, img) => {
       const srcPath = $(img).attr('src');
       if (srcPath.startsWith('http')) {
         if (new URL(srcPath).hostname !== this.url.hostname) {
@@ -88,7 +88,7 @@ export default class Loader {
     const links = $('link');
     const linksArrayWithHref = [];
 
-    links.each((i, link) => {
+    links.each((_, link) => {
       const href = $(link).attr('href');
       if (href) {
         linksArrayWithHref.push(href);
@@ -127,7 +127,7 @@ export default class Loader {
       // await this.creator.createAssets(data, name)
     });
 
-    links.each((i, link) => {
+    links.each((_, link) => {
       const hrefPath = $(link).attr('href');
       if (hrefPath.startsWith('http')) {
         if (new URL(hrefPath).hostname !== this.url.hostname) {
