@@ -105,7 +105,7 @@ export default class Loader {
 
       log(url);
       let name = getCorrectFileName(url, true);
-      if (path.extname(url) === '') {
+      if (path.extname(name) === '') {
         name = `${name}.html`;
       }
 
