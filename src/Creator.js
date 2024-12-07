@@ -1,6 +1,6 @@
 import fs from 'fs/promises';
 import path from 'path';
-import debug from 'console';
+import debug from 'debug';
 const log = debug('page-loader');
 
 export default class Creator {
