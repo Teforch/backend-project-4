@@ -22,7 +22,7 @@ export default class Loader {
       await this.creator.createHTMLFile(data);
       this.htmlFile = data;
     } catch (error) {
-      throw new Error(error);
+      throw error;
     }
   }
 
@@ -30,7 +30,7 @@ export default class Loader {
     try {
       await this.creator.createDirectory();
     } catch (error) {
-      throw new Error(error);
+      throw error;
     }
 
     const $ = cheerio.load(this.htmlFile);
@@ -61,7 +61,7 @@ export default class Loader {
             });
             await this.creator.createAssets(data, name);
           } catch (error) {
-            throw new Error(error);
+            throw error;
           }
         },
       };
@@ -121,7 +121,7 @@ export default class Loader {
             });
             await this.creator.createAssets(data, name);
           } catch (error) {
-            throw new Error(error);
+            throw error;
           }
         },
       };
@@ -185,7 +185,7 @@ export default class Loader {
             const { data } = await axios.get(url);
             await this.creator.createAssets(data, name);
           } catch (error) {
-            throw new Error(error);
+            throw error;
           }
         },
       };

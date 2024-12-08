@@ -18,7 +18,7 @@ class PageLoader {
     try {
       await tasks.run();
     } catch (error) {
-      throw new Error(error);
+      throw error;
     }
   }
 }

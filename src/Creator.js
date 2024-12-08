@@ -15,7 +15,7 @@ export default class Creator {
     try {
       await fs.writeFile(filePath, data);
     } catch (error) {
-      throw new Error(error);
+      throw error;
     }
   }
 
@@ -24,7 +24,7 @@ export default class Creator {
     try {
       await fs.mkdir(dirPath);
     } catch (error) {
-      throw new Error(error);
+      throw error;
     }
 
     this.dirPath = dirPath;
@@ -35,7 +35,7 @@ export default class Creator {
     try {
       await fs.writeFile(filePath, data);
     } catch (error) {
-      throw new Error(error);
+      throw error;
     }
   }
 }
