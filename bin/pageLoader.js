@@ -10,8 +10,8 @@ program
   .version('1.0.0')
   .arguments('<url>')
   .option('-o, --output [dir]', 'output directory (default is current)')
-  .action(async (url) => {
-    await pageLoader(url);
+  .action((url) => {
+    pageLoader(url);
   });
 
 program.parse(process.argv);

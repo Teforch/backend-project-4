@@ -13,6 +13,7 @@ export default class Loader {
     this.outputDir = outputDir;
     this.correctFileName = getCorrectFileName(url);
     this.creator = new CreateFile(this.outputDir, this.correctFileName);
+    this.tasks = [];
   }
 
   async downloadHTML() {
@@ -42,22 +43,18 @@ export default class Loader {
       }
       const name = getCorrectFileName(url, true);
 
-      const tasks = new Listr(
-        [
-          {
-            title: url,
-            task: async () => {
-              const { data } = await axios.get(url, {
-                responseType: 'arraybuffer',
-              });
-              await this.creator.createAssets(data, name);
-            },
-          },
-        ],
-        { concurrent: true }
-      );
+      const task = {
+        title: url,
+        task: async () => {
+          const { data } = await axios.get(url, {
+            responseType: 'arraybuffer',
+          });
+          await this.creator.createAssets(data, name);
+        },
+      };
 
-      await tasks.run();
+      this.tasks.push(task);
+
       // const { data } = await axios.get(url, { responseType: 'arraybuffer' })
       // await this.creator.createAssets(data, name)
     });
@@ -102,22 +99,18 @@ export default class Loader {
 
       let name = getCorrectFileName(url, true);
 
-      const tasks = new Listr(
-        [
-          {
-            title: url,
-            task: async () => {
-              const { data } = await axios.get(url, {
-                responseType: 'arraybuffer',
-              });
-              await this.creator.createAssets(data, name);
-            },
-          },
-        ],
-        { concurrent: true }
-      );
+      const task = {
+        title: url,
+        task: async () => {
+          const { data } = await axios.get(url, {
+            responseType: 'arraybuffer',
+          });
+          await this.creator.createAssets(data, name);
+        },
+      };
 
-      await tasks.run();
+      this.tasks.push(task);
+
       // const { data } = await axios.get(url, { responseType: 'arraybuffer' })
       // await this.creator.createAssets(data, name)
     });
@@ -168,20 +161,15 @@ export default class Loader {
       }
       const name = getCorrectFileName(url, true);
 
-      const tasks = new Listr(
-        [
-          {
-            title: url,
-            task: async () => {
-              const { data } = await axios.get(url);
-              await this.creator.createAssets(data, name);
-            },
-          },
-        ],
-        { concurrent: true }
-      );
+      const task = {
+        title: url,
+        task: async () => {
+          const { data } = await axios.get(url);
+          await this.creator.createAssets(data, name);
+        },
+      };
 
-      await tasks.run();
+      this.tasks.push(task);
       // const { data } = await axios.get(url, { responseType: 'arraybuffer' })
       // await this.creator.createAssets(data, name)
     });
