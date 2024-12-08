@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import { Command } from 'commander';
 import pageLoader from '../index.js';
+import getErrorMessage from '../src/errors.js';
 
 const program = new Command();
 
@@ -13,7 +14,10 @@ program
   .action((url) => {
     pageLoader(url)
       .then(() => process.exit(0))
-      .catch(() => console.error('Error'));
+      .catch((error) => {
+        console.error(getErrorMessage(error));
+        process.exit(1);
+      });
   });
 
 program.parse(process.argv);

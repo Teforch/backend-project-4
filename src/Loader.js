@@ -17,13 +17,23 @@ export default class Loader {
   }
 
   async downloadHTML() {
-    const { data } = await axios.get(this.url.href);
-    await this.creator.createHTMLFile(data);
+    try {
+      const { data } = await axios.get(this.url.href);
+      await this.creator.createHTMLFile(data);
+    } catch (error) {
+      throw new Error(error);
+    }
+
     this.htmlFile = data;
   }
 
   async downloadPictures() {
-    await this.creator.createDirectory();
+    try {
+      await this.creator.createDirectory();
+    } catch (error) {
+      throw new Error(error);
+    }
+
     const $ = cheerio.load(this.htmlFile);
     const images = $('img');
     const imagesArrayWithSrc = [];
@@ -46,10 +56,14 @@ export default class Loader {
       const task = {
         title: url,
         task: async () => {
-          const { data } = await axios.get(url, {
-            responseType: 'arraybuffer',
-          });
-          await this.creator.createAssets(data, name);
+          try {
+            const { data } = await axios.get(url, {
+              responseType: 'arraybuffer',
+            });
+            await this.creator.createAssets(data, name);
+          } catch (error) {
+            throw new Error(error);
+          }
         },
       };
 
@@ -102,10 +116,14 @@ export default class Loader {
       const task = {
         title: url,
         task: async () => {
-          const { data } = await axios.get(url, {
-            responseType: 'arraybuffer',
-          });
-          await this.creator.createAssets(data, name);
+          try {
+            const { data } = await axios.get(url, {
+              responseType: 'arraybuffer',
+            });
+            await this.creator.createAssets(data, name);
+          } catch (error) {
+            throw new Error(error);
+          }
         },
       };
 
@@ -164,8 +182,12 @@ export default class Loader {
       const task = {
         title: url,
         task: async () => {
-          const { data } = await axios.get(url);
-          await this.creator.createAssets(data, name);
+          try {
+            const { data } = await axios.get(url);
+            await this.creator.createAssets(data, name);
+          } catch (error) {
+            throw new Error(error);
+          }
         },
       };
 
