@@ -1,7 +1,5 @@
 import fs from 'fs/promises';
 import path from 'path';
-import debug from 'debug';
-const log = debug('page-loader');
 
 export default class Creator {
   constructor(outputDir, fileName) {
@@ -10,7 +8,6 @@ export default class Creator {
   }
 
   async createHTMLFile(data) {
-    log(this.outputDir);
     const filePath = path.join(this.outputDir, `${this.fileName}.html`);
     await fs.writeFile(filePath, data);
   }
