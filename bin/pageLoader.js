@@ -11,13 +11,14 @@ program
   .version('1.0.0')
   .arguments('<url>')
   .option('-o, --output [dir]', 'output directory (default is current)')
-  .action((url) => {
-    pageLoader(url)
-      .then(() => process.exit(0))
-      .catch((error) => {
-        console.error(getErrorMessage(error));
-        process.exit(1);
-      });
+  .action(async (url) => {
+    try {
+      await pageLoader(url);
+      process.exit(0);
+    } catch (error) {
+      console.error(getErrorMessage(error));
+      process.exit(1);
+    }
   });
 
 program.parse(process.argv);
