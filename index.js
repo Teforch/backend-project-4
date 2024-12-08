@@ -15,7 +15,11 @@ class PageLoader {
     await loader.downloadScripts();
 
     const tasks = new Listr(loader.tasks, { concurrent: true });
-    await tasks.run();
+    try {
+      await tasks.run();
+    } catch (error) {
+      throw new Error(error);
+    }
   }
 }
 

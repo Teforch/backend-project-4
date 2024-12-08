@@ -1,5 +1,8 @@
 import fs from 'fs/promises';
 import path from 'path';
+import debug from 'debug';
+
+const log = debug('page-loader');
 
 export default class Creator {
   constructor(outputDir, fileName) {
@@ -9,18 +12,30 @@ export default class Creator {
 
   async createHTMLFile(data) {
     const filePath = path.join(this.outputDir, `${this.fileName}.html`);
-    await fs.writeFile(filePath, data);
+    try {
+      await fs.writeFile(filePath, data);
+    } catch (error) {
+      throw new Error(error);
+    }
   }
 
   async createDirectory() {
     const dirPath = path.join(this.outputDir, `${this.fileName}_files`);
-    await fs.mkdir(dirPath);
+    try {
+      await fs.mkdir(dirPath);
+    } catch (error) {
+      throw new Error(error);
+    }
 
     this.dirPath = dirPath;
   }
 
   async createAssets(data, name) {
     const filePath = path.join(this.dirPath, `${name}`);
-    await fs.writeFile(filePath, data);
+    try {
+      await fs.writeFile(filePath, data);
+    } catch (error) {
+      throw new Error(error);
+    }
   }
 }

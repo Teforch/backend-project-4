@@ -13,7 +13,7 @@ program
   .action((url) => {
     pageLoader(url)
       .then(() => process.exit(0))
-      .catch(() => process.exit(1));
+      .catch(() => console.error('Error'));
   });
 
 program.parse(process.argv);
