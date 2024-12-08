@@ -20,11 +20,10 @@ export default class Loader {
     try {
       const { data } = await axios.get(this.url.href);
       await this.creator.createHTMLFile(data);
+      this.htmlFile = data;
     } catch (error) {
       throw new Error(error);
     }
-
-    this.htmlFile = data;
   }
 
   async downloadPictures() {
