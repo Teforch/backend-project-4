@@ -11,7 +11,9 @@ program
   .arguments('<url>')
   .option('-o, --output [dir]', 'output directory (default is current)')
   .action((url) => {
-    pageLoader(url);
+    pageLoader(url)
+      .then(() => process.exit(0))
+      .catch(() => process.exit(1));
   });
 
 program.parse(process.argv);
