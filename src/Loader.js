@@ -16,16 +16,13 @@ export default class Loader {
   }
 
   async downloadHTML() {
-    log(this.outputDir);
     const { data } = await axios.get(this.url.href);
     await this.creator.createHTMLFile(data);
     this.htmlFile = data;
-    log('HTML file downloaded');
   }
 
   async downloadPictures() {
     await this.creator.createDirectory();
-    log('Created directory');
     const $ = cheerio.load(this.htmlFile);
     const images = $('img');
     const imagesArrayWithSrc = [];
@@ -54,7 +51,6 @@ export default class Loader {
                 responseType: 'arraybuffer',
               });
               await this.creator.createAssets(data, name);
-              log('image downloaded');
             },
           },
         ],
@@ -104,9 +100,7 @@ export default class Loader {
         return;
       }
 
-      log(url);
       let name = getCorrectFileName(url, true);
-      log(name);
 
       const tasks = new Listr(
         [
@@ -117,7 +111,6 @@ export default class Loader {
                 responseType: 'arraybuffer',
               });
               await this.creator.createAssets(data, name);
-              log('link downloaded');
             },
           },
         ],
@@ -163,7 +156,6 @@ export default class Loader {
         scriptsArrayWithSrc.push(src);
       }
     });
-    log(scriptsArrayWithSrc);
 
     scriptsArrayWithSrc.forEach(async (script) => {
       if (!script) return;
@@ -183,7 +175,6 @@ export default class Loader {
             task: async () => {
               const { data } = await axios.get(url);
               await this.creator.createAssets(data, name);
-              log('script downloaded');
             },
           },
         ],
