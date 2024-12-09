@@ -12,7 +12,6 @@ program
   .arguments('<url>')
   .option('-o, --output [dir]', 'output directory (default is current)')
   .action(async (url, options) => {
-    console.log(options);
     try {
       await pageLoader(url, options.output);
       process.exit(0);
