@@ -1,6 +1,5 @@
 import axios from 'axios';
 import debug from 'debug';
-import Listr from 'listr';
 import * as cheerio from 'cheerio';
 import CreateFile from './Creator.js';
 import getCorrectFileName from './getCorrectFileName.js';

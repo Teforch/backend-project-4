@@ -7,3 +7,10 @@ test('pageLoader with rootDirPath', async () => {
 
   await expect(pageLoader(url, '/sys')).rejects.toThrow();
 });
+
+test('pageLoader with invalidUrl', async () => {
+  const url = 'https://localhost:8080';
+  nock(url).get('/').reply(400, '<html></html>');
+
+  await expect(pageLoader(url, '/home/user/test1/')).rejects.toThrow();
+});
