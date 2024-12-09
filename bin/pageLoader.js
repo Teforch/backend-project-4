@@ -17,7 +17,7 @@ program
       process.exit(0);
     } catch (error) {
       console.error(getErrorMessage(error));
-      process.exit(1);
+      throw error;
     }
   });
 
