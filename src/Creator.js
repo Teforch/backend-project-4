@@ -12,30 +12,32 @@ export default class Creator {
 
   async createHTMLFile(data) {
     const filePath = path.join(this.outputDir, `${this.fileName}.html`);
-    try {
-      await fs.writeFile(filePath, data);
-    } catch (error) {
-      throw error;
-    }
+    fs.writeFile(filePath, data)
+      .then(() => log(`File ${filePath} created`))
+      .catch((error) => {
+        throw error;
+      });
   }
 
   async createDirectory() {
     const dirPath = path.join(this.outputDir, `${this.fileName}_files`);
-    try {
-      await fs.mkdir(dirPath);
-    } catch (error) {
-      throw error;
-    }
+
+    fs.mkdir(dirPath)
+      .then(() => log(`Directory ${dirPath} created`))
+      .catch((error) => {
+        throw error;
+      });
 
     this.dirPath = dirPath;
   }
 
   async createAssets(data, name) {
     const filePath = path.join(this.dirPath, `${name}`);
-    try {
-      await fs.writeFile(filePath, data);
-    } catch (error) {
-      throw error;
-    }
+
+    fs.writeFile(filePath, data)
+      .then(() => log(`File ${filePath} created`))
+      .catch((error) => {
+        throw error;
+      });
   }
 }
