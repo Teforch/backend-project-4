@@ -29,6 +29,7 @@ export default async (url, outputDir = process.cwd()) => {
   try {
     await pageLoader.load();
   } catch (error) {
+    console.error(error);
     throw error;
   }
 };
