@@ -23,10 +23,12 @@ class PageLoader {
   }
 }
 
-export default (url, outputDir = process.cwd()) => {
+export default async (url, outputDir = process.cwd()) => {
   const pageLoader = new PageLoader(url, outputDir);
 
-  return pageLoader.load().catch((error) => {
-    return Promise.reject(error);
-  });
+  try {
+    await pageLoader.load();
+  } catch (error) {
+    throw error;
+  }
 };

@@ -11,13 +11,13 @@ program
   .version('1.0.0')
   .arguments('<url>')
   .option('-o, --output [dir]', 'output directory (default is current)')
-  .action(async (url) => {
+  .action(async (url, options) => {
+    console.log(options);
     try {
-      await pageLoader(url);
+      await pageLoader(url, options.output);
       process.exit(0);
     } catch (error) {
       console.error(getErrorMessage(error));
-      return Promise.reject(error);
     }
   });
 

@@ -3,6 +3,7 @@ const errors = [
   { code: 'ERRHTTP', msg: 'Invalid url.' },
   { code: 'ENOENT', msg: 'Invalid output directory.' },
   { code: 'EEXIST', msg: 'The page is already downloaded.' },
+  { code: 'EACCES', msg: 'Access denied.' },
 ];
 
 const getErrorCode = (error) => {
