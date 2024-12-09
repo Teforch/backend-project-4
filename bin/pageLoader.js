@@ -17,7 +17,7 @@ program
       process.exit(0);
     } catch (error) {
       console.error(getErrorMessage(error));
-      throw error;
+      return Promise.reject(error);
     }
   });
 
