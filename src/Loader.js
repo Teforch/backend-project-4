@@ -80,7 +80,7 @@ export default class Loader {
       }
       const formattedPath = getCorrectFileName(
         new URL(srcPath, this.url.href).href,
-        true
+        true,
       );
       $(img).attr('src', `${this.creator.fileName}_files/${formattedPath}`);
     });
@@ -109,7 +109,7 @@ export default class Loader {
         return;
       }
 
-      let name = getCorrectFileName(url, true);
+      const name = getCorrectFileName(url, true);
 
       const task = {
         title: url,
@@ -144,7 +144,7 @@ export default class Loader {
         : `${hrefPath}.html`;
       const formattedPath = getCorrectFileName(
         new URL(newHrefPath, this.url.href).href,
-        true
+        true,
       );
       $(link).attr('href', `${this.creator.fileName}_files/${formattedPath}`);
     });
@@ -205,7 +205,7 @@ export default class Loader {
       }
       const formattedPath = getCorrectFileName(
         new URL(srcPath, this.url.href).href,
-        true
+        true,
       );
 
       $(script).attr('src', `${this.creator.fileName}_files/${formattedPath}`);

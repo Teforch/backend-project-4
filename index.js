@@ -1,6 +1,6 @@
-import Loader from './src/Loader.js';
 import Listr from 'listr';
 import axios from 'axios';
+import Loader from './src/Loader.js';
 
 class PageLoader {
   constructor(url, outputDir) {

@@ -1,5 +1,5 @@
-import pageLoader from '../index.js';
 import nock from 'nock';
+import pageLoader from '../index.js';
 
 test('pageLoader with rootDirPath', async () => {
   const url = 'https://localhost:8080';
@@ -13,6 +13,6 @@ test('pageLoader with invalidUrl', async () => {
   nock(url).get('/').reply(400, '<html></html>');
 
   await expect(
-    pageLoader('http://sadflksaf', '/home/user/test1/')
+    pageLoader('http://sadflksaf', '/home/user/test1/'),
   ).rejects.toThrow();
 });

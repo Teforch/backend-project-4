@@ -18,23 +18,23 @@ beforeEach(async () => {
 test('DownloadHTML', async () => {
   const beforeHTML = await fs.readFile(
     path.join(__dirname, '../__fixtures__/beforeChange.html'),
-    'utf8'
+    'utf8',
   );
   const afterHTML = await fs.readFile(
     path.join(__dirname, '../__fixtures__/afterChange.html'),
-    'utf8'
+    'utf8',
   );
   const png = await fs.readFile(
     path.join(__dirname, '../__fixtures__/nodejs.png'),
-    'utf8'
+    'utf8',
   );
   const css = await fs.readFile(
     path.join(__dirname, '../__fixtures__/application.css'),
-    'utf8'
+    'utf8',
   );
   const js = await fs.readFile(
     path.join(__dirname, '../__fixtures__/runtime.js'),
-    'utf8'
+    'utf8',
   );
   const url = 'https://ru.hexlet.io';
 
@@ -50,10 +50,10 @@ test('DownloadHTML', async () => {
   await loader.downloadScripts();
   const result = await fs.readFile(
     path.join(tempDir, 'ru-hexlet-io-courses.html'),
-    'utf8'
+    'utf8',
   );
   const dir = await fs.readdir(
-    path.join(tempDir, 'ru-hexlet-io-courses_files')
+    path.join(tempDir, 'ru-hexlet-io-courses_files'),
   );
   console.log(dir);
   const $result = cheerio.load(result);

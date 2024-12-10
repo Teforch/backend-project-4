@@ -5,7 +5,7 @@ export default (url, changeOnDotLastSymbol = false) => {
   let urlWithoutProtocol = url.replace(`${parsedUrl.protocol}//`, '');
 
   if (path.extname(urlWithoutProtocol) === '' && changeOnDotLastSymbol) {
-    urlWithoutProtocol = urlWithoutProtocol + '.html';
+    urlWithoutProtocol += '.html';
   }
 
   if (changeOnDotLastSymbol) {
