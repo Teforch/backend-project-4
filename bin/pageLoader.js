@@ -13,10 +13,11 @@ program
   .option('-o, --output [dir]', 'output directory (default is current)')
   .action(async (url, options) => {
     try {
-      await pageLoader(url, options.output);
+      await pageLoader(url);
       process.exit(0);
     } catch (error) {
       console.error(getErrorMessage(error));
+      process.exit(1);
     }
   });
 
