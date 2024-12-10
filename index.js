@@ -1,5 +1,4 @@
 import Listr from 'listr';
-import axios from 'axios';
 import Loader from './src/Loader.js';
 
 class PageLoader {
@@ -19,6 +18,7 @@ class PageLoader {
     try {
       await tasks.run();
     } catch (error) {
+      console.log(1);
       throw error;
     }
   }

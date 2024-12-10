@@ -1,10 +1,7 @@
 import axios from 'axios';
-import debug from 'debug';
 import * as cheerio from 'cheerio';
 import CreateFile from './Creator.js';
 import getCorrectFileName from './getCorrectFileName.js';
-
-const log = debug('page-loader');
 
 export default class Loader {
   constructor(url, outputDir) {
@@ -21,6 +18,7 @@ export default class Loader {
       await this.creator.createHTMLFile(data);
       this.htmlFile = data;
     } catch (error) {
+      console.log(1);
       throw error;
     }
   }
@@ -29,6 +27,7 @@ export default class Loader {
     try {
       await this.creator.createDirectory();
     } catch (error) {
+      console.log(1);
       throw error;
     }
 
@@ -60,6 +59,7 @@ export default class Loader {
             });
             await this.creator.createAssets(data, name);
           } catch (error) {
+            console.log(1);
             throw error;
           }
         },
@@ -120,6 +120,7 @@ export default class Loader {
             });
             await this.creator.createAssets(data, name);
           } catch (error) {
+            console.log(1);
             throw error;
           }
         },
@@ -184,6 +185,7 @@ export default class Loader {
             const { data } = await axios.get(url);
             await this.creator.createAssets(data, name);
           } catch (error) {
+            console.log(1);
             throw error;
           }
         },

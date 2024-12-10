@@ -1,8 +1,5 @@
 import fs from 'fs/promises';
 import path from 'path';
-import debug from 'debug';
-
-const log = debug('page-loader');
 
 export default class Creator {
   constructor(outputDir, fileName) {
@@ -15,6 +12,7 @@ export default class Creator {
     try {
       await fs.writeFile(filePath, data);
     } catch (error) {
+      console.log(1);
       throw error;
     }
   }
@@ -24,6 +22,7 @@ export default class Creator {
     try {
       await fs.mkdir(dirPath);
     } catch (error) {
+      console.log(1);
       throw error;
     }
 
@@ -35,6 +34,7 @@ export default class Creator {
     try {
       await fs.writeFile(filePath, data);
     } catch (error) {
+      console.log(1);
       throw error;
     }
   }
